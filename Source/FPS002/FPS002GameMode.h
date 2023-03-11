@@ -13,6 +13,18 @@ class AFPS002GameMode : public AGameModeBase
 
 public:
 	AFPS002GameMode();
+
+	/** int to count restart */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Custom)
+	int restartCounter;
+
+	/** Setter to set the int */
+	UFUNCTION(BlueprintCallable, Category = Custom)
+	void SetRestartCounter(int newRestartCounter);
+
+	/** Getter for the int */
+	UFUNCTION(BlueprintCallable, Category = Custom)
+	int GetRestartCounter();
 };
 
 

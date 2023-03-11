@@ -11,4 +11,16 @@ AFPS002GameMode::AFPS002GameMode()
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPerson/Blueprints/BP_FirstPersonCharacter"));
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
+	restartCounter = 0;
+
+}
+
+void AFPS002GameMode::SetRestartCounter(int newRestartCounter)
+{
+	restartCounter = newRestartCounter;
+}
+
+int AFPS002GameMode::GetRestartCounter()
+{
+	return restartCounter;
 }
