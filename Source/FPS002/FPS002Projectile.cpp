@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "FPS002Projectile.h"
+#include "Public/FPS002CrystalWeapon.h"
+#include "FPS002Character.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
@@ -33,9 +35,22 @@ AFPS002Projectile::AFPS002Projectile()
 
 void AFPS002Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+
+	if (HitComp->IsA(AFPS002CrystalWeapon::StaticClass())) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("OnHit WEAPON"));
+	}
+
+	if (OtherActor->IsA(AFPS002Character::StaticClass())) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("OnHit CHARACTER"));
+
+		AFPS002Character* character = Cast<AFPS002Character>(OtherActor);
+
+	}
+
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
+
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 
 		Destroy();

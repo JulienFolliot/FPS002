@@ -72,7 +72,6 @@ void AFPS002Character::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 	}
 }
 
-
 void AFPS002Character::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
